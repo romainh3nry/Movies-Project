@@ -44,6 +44,9 @@ services:
       - 27017:27017
     volumes:
       - ~/apps/mongo:/data/db
+      - type: bind
+        source: ./data
+        target: /src
     networks:
       - app_network
 
