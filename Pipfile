@@ -8,6 +8,10 @@ isort = "*"
 flake8 = "*"
 django = "==4.0.5"
 gunicorn = "*"
+djongo = "*"
+pymongo = "==3.12.3"
+pytz = "*"
+mongoengine = "*"
 
 [dev-packages]
 
