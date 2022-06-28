@@ -1,0 +1,6 @@
+{
+    "DATA_FILE" : "data/imdb_movies.csv.zip",
+    "DATA_PATH" : "/data/",
+    "OLD_PATH" : "/data/old/",
+    "OUTPUT_PATH" : "/data/output"
+}
