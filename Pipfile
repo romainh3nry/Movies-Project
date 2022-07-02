@@ -12,6 +12,7 @@ djongo = "*"
 pymongo = "==3.12.3"
 pytz = "*"
 mongoengine = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
