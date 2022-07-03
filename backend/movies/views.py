@@ -14,5 +14,5 @@ class MoviesList(generics.ListCreateAPIView):
 
 class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MovieSerializer
-    lookup_field = 'imdb_title_id'
+    lookup_field = 'id'
     queryset = Movie.objects.all()

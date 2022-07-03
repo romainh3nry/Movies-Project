@@ -6,7 +6,7 @@ import uuid
 
 
 class Movie(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
+    id = models.TextField(primary_key=True, default=uuid.uuid4)
     imdb_title_id = models.CharField(max_length=100, null=False, blank=False)
     title = models.CharField(max_length=150, null=False, blank=False)
     original_title = models.CharField(max_length=150, null=False, blank=False)
