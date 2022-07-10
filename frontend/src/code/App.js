@@ -1,5 +1,11 @@
 import {createGlobalStyle} from 'styled-components';
-import SideBar from './SideBar';
+import {Container} from 'react-bootstrap';
+import Header from './Header';
+import Home from './Home';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -10,10 +16,15 @@ const GlobalStyle = createGlobalStyle`
 
 const App = () => {
   return (
-    <div>
+    <>
         <GlobalStyle />
-        <SideBar />
-    </div>
+        <Container>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Container>
+    </>
   )  
 }
 
