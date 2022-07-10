@@ -47,12 +47,20 @@ const StyledTitle = styled.h3`
 `
 
 const SideBar = () => {
+
+    const navs = ['All Movies', 'Best Movies', 'Worst Movies', 'Add Movies']
+
     return (
         <StyledContainer>
             <StyledTitle>Movies Project</StyledTitle>
-            <StyledLink href="#">All Movies</StyledLink>
-            <StyledLink href="#">Best Movies</StyledLink>
-            <StyledLink href="#">Worst Movies</StyledLink>
+            {navs.map((nav) => {
+                return (
+                    <StyledLink 
+                        href={'/' + nav.split(' ')[1] + '/' + nav.split(' ')[0]}
+                    >{nav}
+                    </StyledLink>
+                )
+            })}
         </StyledContainer>
     )
 }
