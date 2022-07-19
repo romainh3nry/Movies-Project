@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import React from "react";
 import axios from 'axios';
 
@@ -31,10 +31,18 @@ const moviesListReducer = (action, state) => {
 
 const Movies = () => {
 
+    const handleFetchMovies = (page) => {
+        console.log(page);
+    }
+
     const [movies, moviesDispatch] = React.useReducer(
         moviesListReducer,
         {data: [], isLoading: false, isError: false}
     )
+
+    React.useEffect(() => {
+        handleFetchMovies(1)
+    }, [])
 
     return (
         'all movies'
