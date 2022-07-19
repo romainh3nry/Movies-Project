@@ -2,6 +2,7 @@ import {createGlobalStyle} from 'styled-components';
 import {Container} from 'react-bootstrap';
 import Header from './Header';
 import Home from './Home';
+import Movies from './Movies';
 import {
   Routes,
   Route,
@@ -22,6 +23,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/movies/" element={<Movies />} />
           </Routes>
         </Container>
     </>

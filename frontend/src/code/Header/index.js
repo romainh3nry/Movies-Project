@@ -26,7 +26,6 @@ const StyledLink = styled(Link)`
     font-size: 20px;
     color: white;
     display: block;
-    text-align: center;
     margin: 10px;
 
     &:hover {
@@ -43,7 +42,7 @@ const StyledLink = styled(Link)`
 
 const Header = () => {
 
-    const navs = ['All Movies', 'Best Movies', 'Worst Movies', 'Add Movies']
+    const navs = ['Movies', ]
 
     return (
         <StyledNavBar expand="lg">
@@ -55,7 +54,7 @@ const Header = () => {
                         return (
                             <StyledLink 
                                 key={index}
-                                to={'/' + nav.split(' ')[1] + '/' + nav.split(' ')[0]}
+                                to={'/' + nav.split(' ')[0] + "/"}
                             >{nav}
                             </StyledLink>  
                         )
