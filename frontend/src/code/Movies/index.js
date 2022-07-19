@@ -3,6 +3,7 @@ import {Row, Col, Container} from 'react-bootstrap';
 import React from "react";
 import axios from 'axios';
 
+
 const moviesListReducer = (action, state) => {
     switch (action.type) {
         case 'MOVIES_FETCH_INIT':
@@ -32,10 +33,12 @@ const moviesListReducer = (action, state) => {
 const Movies = () => {
 
     const handleFetchMovies = (page) => {
-        console.log(page);
+        dispatchMovies({type: 'MOVIES_FETCH_INIT'})
+        axios
+            .get(`http://127.0.0.1:8000/api/v1/movies/all/?page=${page}`)
     }
 
-    const [movies, moviesDispatch] = React.useReducer(
+    const [movies, dispatchMovies] = React.useReducer(
         moviesListReducer,
         {data: [], isLoading: false, isError: false}
     )
