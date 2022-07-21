@@ -13,10 +13,27 @@ const StyledPoster = styled.div`
     background-image linear-gradient(315deg, #20bf55 0%, #01baef 74%);
     padding: 5px;
     margin-top: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 `
 const StyledImg = styled.img`
     max-width:100%;
     max-height:100%;
+`
+
+const StyledBottomDiv = styled.div`
+    margin-top: 20px;
+`
+
+const StyledButton = styled.button`
+    font-size: 20px;
+    width: 100%;
+    border: solid 5px transparent;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 1000px 1px #fff inset;
+    color: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+    margin-top: 5px;
 `
 
 const getUrl = (page) => (
@@ -28,7 +45,7 @@ const extractPage = (url) => {
     return parseInt(page[1])
 }
 
-const moviesListReducer = (action, state) => {
+const moviesReducer = (state, action) => {
     switch (action.type) {
         case 'MOVIES_FETCH_INIT':
             return {
@@ -50,15 +67,14 @@ const moviesListReducer = (action, state) => {
                 isError: true
             }
         default:
-            return state
+            return state;
     }
 }
 
-
 const Movies = () => {
 
-    const [movie, dispatchMovie] = React.useReducer(
-        moviesListReducer,
+    const [movies, dispatchMovie] = React.useReducer(
+        moviesReducer,
         {data: [], isLoading: false, isError: false}
     )
     const [urls, setUrls] = React.useState(getUrl(1))
@@ -103,9 +119,9 @@ const Movies = () => {
 
     React.useEffect(() => {
         setImage([])
-        if (movie.payload !== undefined) 
+        if (movies.data.results !== undefined) 
         {
-            movie.payload.results.map(elt => {
+            movies.data.results.map(elt => {
                 axios
                     .get(`https://api.themoviedb.org/3/movie/${elt.imdb_title_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US`)
                     .then(result => {
@@ -113,7 +129,7 @@ const Movies = () => {
                     })
             })
         }
-    }, [movie])
+    }, [movies])
 
     return (
         <Container>
@@ -128,14 +144,20 @@ const Movies = () => {
                     )
                 })}
             </Row>
-            <Row>
-                <Col lg={6}>
-                    <button onClick={handlePrevious} type="button">Previous</button>
-                </Col>
-                <Col lg={6}>
-                    <button onClick={handleNext} type="button">Next</button>
-                </Col>
-            </Row>
+            <StyledBottomDiv>
+                <Row>
+                    <Col lg={6}>
+                        {movies.data.previous
+                            ? <StyledButton onClick={handlePrevious} type="button">Previous</StyledButton>
+                            : <StyledButton type="button" disabled>Previous</StyledButton>}
+                    </Col>
+                    <Col lg={6}>
+                        {movies.data.next
+                            ? <StyledButton onClick={handleNext} type="button">Next</StyledButton>
+                            : <StyledButton type="button" disabled>Next</StyledButton>}
+                    </Col>
+                </Row>
+            </StyledBottomDiv>
         </Container>
     )
 }
