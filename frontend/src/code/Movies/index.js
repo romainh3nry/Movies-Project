@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
+//https://api.themoviedb.org/3/movie/tt7781432?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US
+//https://image.tmdb.org/t/p/original
 const getUrl = (page) => (
     `http://127.0.0.1:8000/api/v1/movies/all/?page=${page}`
 )
@@ -48,6 +50,7 @@ const Movies = () => {
         {data: [], isLoading: false, isError: false}
     )
     const [urls, setUrls] = React.useState(getUrl(1))
+    const [image, setImage] = React.useState([])
 
     const handleFetchMovies = React.useCallback(() => {
         dispatchMovie({type: 'MOVIES_FETCH_INIT'})
@@ -64,10 +67,6 @@ const Movies = () => {
             })
     }, [urls])
 
-    React.useEffect(() => {
-        handleFetchMovies()
-    }, [handleFetchMovies])
-
     const handleDisplay = (page) => {
         const url = getUrl(page)
         setUrls(url);
@@ -83,13 +82,36 @@ const Movies = () => {
         handleDisplay(page - 1)
     }
 
+    React.useEffect(() => {
+        handleFetchMovies()
+    }, [handleFetchMovies])
+
+    React.useEffect(() => {
+        let imageArray = []
+        if (movie.payload !== undefined) 
+        {
+            movie.payload.results.map(elt => {
+                axios
+                    .get(`https://api.themoviedb.org/3/movie/${elt.imdb_title_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US`)
+                    .then(result => {
+                        setImage(prevValue => [...prevValue, `https://image.tmdb.org/t/p/original${result.data.poster_path}`])
+                    })
+            })
+        }
+    }, [movie])
+
     return (
-        <>
-        'all movies'
-        <button onClick={handlePrevious} type="button">Previous</button>
-        <button onClick={handleNext} type="button">Next</button>
-        </>
-        
+        <Container>
+            <Row>
+                {image.map((elt, index) => {
+                    return (
+                        <Col key={index} lg={2}>
+                            <img src={elt} width={250} height={300}  />
+                        </Col>
+                    )
+                })}
+            </Row>
+        </Container>
     )
 }
 
