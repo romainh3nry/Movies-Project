@@ -125,7 +125,7 @@ const Movies = () => {
                 axios
                     .get(`https://api.themoviedb.org/3/movie/${elt.imdb_title_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US`)
                     .then(result => {
-                        setImage(prevValue => [...prevValue, `https://image.tmdb.org/t/p/original${result.data.poster_path}`])
+                        setImage(prevValue => [...prevValue, [`https://image.tmdb.org/t/p/original${result.data.poster_path}`, elt.id]])
                     })
             })
         }
@@ -138,7 +138,7 @@ const Movies = () => {
                     return (
                         <Col key={index} lg={2} md={4} sm={6} xs={6}>
                             <StyledPoster>
-                                <StyledImg src={elt} width={"auto"} height={300} />
+                                <StyledImg src={elt[0]} width={"auto"} height={300} />
                             </StyledPoster>
                         </Col>
                     )
