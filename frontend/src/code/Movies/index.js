@@ -7,6 +7,18 @@ import { Link } from 'react-router-dom';
 
 //https://api.themoviedb.org/3/movie/tt7781432?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US
 //https://image.tmdb.org/t/p/original
+
+const StyledPoster = styled.div`
+    background-color #20bf55;
+    background-image linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+    padding: 5px;
+    margin-top: 10px;
+`
+const StyledImg = styled.img`
+    max-width:100%;
+    max-height:100%;
+`
+
 const getUrl = (page) => (
     `http://127.0.0.1:8000/api/v1/movies/all/?page=${page}`
 )
@@ -87,7 +99,6 @@ const Movies = () => {
     }, [handleFetchMovies])
 
     React.useEffect(() => {
-        let imageArray = []
         if (movie.payload !== undefined) 
         {
             movie.payload.results.map(elt => {
@@ -106,7 +117,9 @@ const Movies = () => {
                 {image.map((elt, index) => {
                     return (
                         <Col key={index} lg={2}>
-                            <img src={elt} width={250} height={300}  />
+                            <StyledPoster>
+                                <StyledImg src={elt} width={"auto"} height={300} />
+                            </StyledPoster>
                         </Col>
                     )
                 })}
