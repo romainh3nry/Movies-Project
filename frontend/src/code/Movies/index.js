@@ -85,20 +85,24 @@ const Movies = () => {
     }
 
     const handleNext = () => {
+        setImage([])
         const page = extractPage(urls)
         handleDisplay(page + 1)
     }
 
     const handlePrevious = () => {
+        setImage([])
         const page = extractPage(urls)
         handleDisplay(page - 1)
     }
 
     React.useEffect(() => {
+        setImage([])
         handleFetchMovies()
     }, [handleFetchMovies])
 
     React.useEffect(() => {
+        setImage([])
         if (movie.payload !== undefined) 
         {
             movie.payload.results.map(elt => {
@@ -116,13 +120,21 @@ const Movies = () => {
             <Row>
                 {image.map((elt, index) => {
                     return (
-                        <Col key={index} lg={2}>
+                        <Col key={index} lg={2} md={4} sm={6} xs={6}>
                             <StyledPoster>
                                 <StyledImg src={elt} width={"auto"} height={300} />
                             </StyledPoster>
                         </Col>
                     )
                 })}
+            </Row>
+            <Row>
+                <Col lg={6}>
+                    <button onClick={handlePrevious} type="button">Previous</button>
+                </Col>
+                <Col lg={6}>
+                    <button onClick={handleNext} type="button">Next</button>
+                </Col>
             </Row>
         </Container>
     )
