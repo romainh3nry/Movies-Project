@@ -54,7 +54,7 @@ const Header = () => {
                         return (
                             <StyledLink 
                                 key={index}
-                                to={'/' + nav.split(' ')[0] + "/"}
+                                to={'/' + nav.split(' ')[0].toLowerCase() + "/"}
                             >{nav}
                             </StyledLink>  
                         )

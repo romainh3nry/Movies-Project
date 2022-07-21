@@ -138,7 +138,7 @@ const Movies = () => {
                     return (
                         <Col key={index} lg={2} md={4} sm={6} xs={6}>
                             <StyledPoster>
-                                <StyledImg src={elt[0]} width={"auto"} height={300} />
+                                <Link to={`/movies/${elt[1]}`}><StyledImg src={elt[0]} width={"auto"} height={300} /></Link>
                             </StyledPoster>
                         </Col>
                     )
