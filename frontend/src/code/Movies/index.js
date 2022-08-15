@@ -112,6 +112,10 @@ const Movies = () => {
         handleDisplay(page - 1)
     }
 
+    const handleSearch = () => {
+
+    }
+
     React.useEffect(() => {
         setImage([])
         handleFetchMovies()

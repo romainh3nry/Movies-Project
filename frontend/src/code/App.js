@@ -3,6 +3,7 @@ import {Container} from 'react-bootstrap';
 import Header from './Header';
 import Home from './Home';
 import Movies from './Movies';
+import Search from './Search';
 import {
   Routes,
   Route,
@@ -24,6 +25,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movies/" element={<Movies />} />
+            <Route path="/search/" element={<Search />} />
           </Routes>
         </Container>
     </>

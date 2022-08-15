@@ -40,9 +40,16 @@ const StyledLink = styled(Link)`
     }
 `
 
+const StyledInputText = styled.input`
+    padding: 5px;
+    border-radius: 10px;
+    width: 400px;
+    border: 2px solid transparent;
+`
+
 const Header = () => {
 
-    const navs = ['Movies', ]
+    const navs = ['Movies', 'Search']
 
     return (
         <StyledNavBar expand="lg">
