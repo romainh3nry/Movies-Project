@@ -14,16 +14,34 @@ const StyledDiv = styled.div`
     padding: 9px;
 `
 const StyledInputText = styled.input`
-    padding: 5px;
-    border: 2px solid transparent;
-    display: block;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    letter-spacing: 5px;
+    font-size: 15px;
+
+    &:focus {
+        border: none;
+        outline:none;
+    }
+`
+
+const StyledForm = styled.form`
     width: 100%;
 `
 
 const Search = () => {
+
+    const handleSubmit = e => {
+        console.log('submitted');
+        e.preventDefault();
+    }
+
     return (
         <StyledDiv>
-            <StyledInputText type={"text"} placeholder={"Search a movie..."} />
+            <StyledForm action='#' onSubmit={handleSubmit}>
+                <StyledInputText type={"text"} placeholder={"Search a movie..."} />
+            </StyledForm>
         </StyledDiv>
     )
 }
